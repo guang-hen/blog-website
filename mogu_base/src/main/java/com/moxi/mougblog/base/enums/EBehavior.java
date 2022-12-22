@@ -20,6 +20,7 @@ public enum EBehavior {
      * 用户行为
      */
     BLOG_TAG("点击标签", "blog_tag"),
+    BLOG_PUBLISH("发布博客", "blog_publish"),
     BLOG_SORT("点击博客分类", "blog_sort"),
     BLOG_CONTNET("点击博客", "blog_content"),
     BLOG_PRAISE("点赞", "blog_praise"),

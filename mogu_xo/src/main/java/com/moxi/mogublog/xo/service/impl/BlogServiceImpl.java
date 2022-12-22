@@ -715,15 +715,17 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         //如果是原创，作者为用户的昵称
         String projectName = sysParamsService.getSysParamsValueByKey(SysConf.PROJECT_NAME_);
         if (EOriginal.ORIGINAL.equals(blogVO.getIsOriginal())) {
-            Admin admin = adminService.getById(request.getAttribute(SysConf.ADMIN_UID).toString());
-            if (admin != null) {
-                if(StringUtils.isNotEmpty(admin.getNickName())) {
-                    blog.setAuthor(admin.getNickName());
-                } else {
-                    blog.setAuthor(admin.getUserName());
+            Optional.ofNullable(request.getAttribute(SysConf.ADMIN_UID)).ifPresent(id -> {
+                Admin admin = adminService.getById(id.toString());
+                if (admin != null) {
+                    if (StringUtils.isNotEmpty(admin.getNickName())) {
+                        blog.setAuthor(admin.getNickName());
+                    } else {
+                        blog.setAuthor(admin.getUserName());
+                    }
+                    blog.setAdminUid(admin.getUid());
                 }
-                blog.setAdminUid(admin.getUid());
-            }
+            });
             blog.setArticlesPart(projectName);
         } else {
             blog.setAuthor(blogVO.getAuthor());
