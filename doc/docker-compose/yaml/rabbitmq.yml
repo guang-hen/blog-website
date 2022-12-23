@@ -10,7 +10,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: mogu2018
+      RABBITMQ_DEFAULT_PASS: battlenet0A
     volumes:
       - ../data/rabbitmq_data:/var/lib/rabbitmq/mnesia
     networks:
