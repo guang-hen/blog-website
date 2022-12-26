@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+echo '=====赋予对应文件操作权限....====='
+sudo chmod +x ./*
+cd ..
+cd config/
+sudo chmod +x ./*
+echo '=====赋予权限完成====='
+
 echo '=====开始安装蘑菇博客环境====='
 
 echo '=====开始运行mysql====='
