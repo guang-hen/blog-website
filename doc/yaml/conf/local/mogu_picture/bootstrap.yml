@@ -7,7 +7,7 @@ spring:
   cloud:
     nacos:
       username: nacos
-      password: nacos
+      password: battlenet0A
 
       discovery:
         server-addr: localhost:8848

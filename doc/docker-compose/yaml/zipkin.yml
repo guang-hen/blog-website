@@ -7,7 +7,7 @@ services:
       - STORAGE_TYPE=mysql
       - MYSQL_DB=zipkin
       - MYSQL_USER=root
-      - MYSQL_PASS=mogu2018
+      - MYSQL_PASS=battlenet0A
       - MYSQL_HOST=mysql
       - MYSQL_TCP_PORT=3306
     ports:
