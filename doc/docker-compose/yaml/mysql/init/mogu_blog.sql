@@ -13,9 +13,8 @@
 
  Date: 23/12/2022 11:55:30
 */
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+CREATE DATABASE `mogu_blog`;
+USE `mogu_blog`;
 
 -- ----------------------------
 -- Table structure for t_admin

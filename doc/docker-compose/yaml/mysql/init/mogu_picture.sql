@@ -13,9 +13,8 @@
 
  Date: 23/12/2022 11:57:17
 */
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+CREATE DATABASE `mogu_picture`;
+USE `mogu_picture`;
 
 -- ----------------------------
 -- Table structure for t_file
