@@ -38,12 +38,8 @@ import me.zhyd.oauth.exception.AuthException;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthToken;
-import me.zhyd.oauth.request.AuthGiteeRequest;
-import me.zhyd.oauth.request.AuthGithubRequest;
-import me.zhyd.oauth.request.AuthQqRequest;
-import me.zhyd.oauth.request.AuthRequest;
+import me.zhyd.oauth.request.*;
 import me.zhyd.oauth.utils.AuthStateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -71,30 +67,30 @@ import java.util.concurrent.TimeUnit;
 @Api(value = "第三方登录相关接口", tags = {"第三方登录相关接口"})
 @Slf4j
 public class AuthRestApi {
-    @Autowired
+    @Resource
     private WebUtil webUtil;
-    @Autowired
+    @Resource
     private SystemConfigService systemConfigService;
-    @Autowired
+    @Resource
     private WebConfigService webConfigService;
-    @Autowired
+    @Resource
     private FeedbackService feedbackService;
-    @Autowired
+    @Resource
     private LinkService linkService;
-    @Autowired
+    @Resource
     private RabbitMqUtil rabbitMqUtil;
-    @Autowired
+    @Resource
     private UserService userService;
     @Value(value = "${justAuth.clientId.gitee}")
-    private String giteeClienId;
+    private String giteeClientId;
     @Value(value = "${justAuth.clientSecret.gitee}")
     private String giteeClientSecret;
     @Value(value = "${justAuth.clientId.github}")
-    private String githubClienId;
+    private String githubClientId;
     @Value(value = "${justAuth.clientSecret.github}")
     private String githubClientSecret;
     @Value(value = "${justAuth.clientId.qq}")
-    private String qqClienId;
+    private String qqClientId;
     @Value(value = "${justAuth.clientSecret.qq}")
     private String qqClientSecret;
     @Value(value = "${data.webSite.url}")
@@ -117,7 +113,7 @@ public class AuthRestApi {
     @Value(value = "${uniapp.qq.grant_type}")
     private String GRANT_TYPE;
 
-    @Autowired
+    @Resource
     private StringRedisTemplate stringRedisTemplate;
     @Resource
     private PictureFeignClient pictureFeignClient;
@@ -738,21 +734,21 @@ public class AuthRestApi {
         switch (source) {
             case SysConf.GITHUB:
                 authRequest = new AuthGithubRequest(AuthConfig.builder()
-                        .clientId(githubClienId)
+                        .clientId(githubClientId)
                         .clientSecret(githubClientSecret)
                         .redirectUri(moguWebUrl + "/oauth/callback/github")
                         .build());
                 break;
             case SysConf.GITEE:
                 authRequest = new AuthGiteeRequest(AuthConfig.builder()
-                        .clientId(giteeClienId)
+                        .clientId(giteeClientId)
                         .clientSecret(giteeClientSecret)
                         .redirectUri(moguWebUrl + "/oauth/callback/gitee")
                         .build());
                 break;
             case SysConf.QQ:
                 authRequest = new AuthQqRequest(AuthConfig.builder()
-                        .clientId(qqClienId)
+                        .clientId(qqClientId)
                         .clientSecret(qqClientSecret)
                         .redirectUri(moguWebUrl + "/oauth/callback/qq")
                         .build());
